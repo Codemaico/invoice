@@ -1,0 +1,96 @@
+<!-- src/app/invoice-form/invoice-form.component.html -->
+
+<div class="invoice-form-container">
+    <!-- Begin Invoice Section for PDF generation -->
+    <div #invoiceSection>
+        <!-- Company Header with Logo -->
+        <div class="company-header">
+            <div class="company-logo">
+                <img src="assets/top five logo.jpg" alt="Company Logo" style="height: 150px; width: 250px;">
+            </div>
+            <div class="company-details">
+                <h2>Top Five Investments General Trading</h2>
+                <p>Nimule street, Near Embassy of The state of Eritrea</p>
+                <p>Juba, South Sudan</p>
+                <p>Phone: +211-910-133-802, +211-980-274-834</p>
+                <p>Email: devwithmiki&#64;gmail.com, efrsul8&#64;gmail.com</p>
+            </div>
+        </div>
+
+        <!-- Invoice Information -->
+        <div class="invoice-info">
+            <h2>Invoice #{{ invoiceNumber }}</h2>
+            <p><strong>Date:</strong> {{ invoice?.date | date }}</p>
+        </div>
+
+        <!-- Client Details Section -->
+        <div class="client-info">
+            <h3>Bill To:</h3>
+            <!-- <p><strong>Bill to:</strong> <input type="text" placeholder="Billed to" /></p> -->
+            <p><strong>Client Name:</strong> <input [(ngModel)]="clientName" placeholder="Enter client name" /></p>
+        </div>
+
+        <!-- Items Table with Edit and Delete Options -->
+        <table class="items-table">
+            <tr>
+                <th style="width: 40%;">Description</th>
+                <th style="width: 15%;">Quantity</th>
+                <th style="width: 15%;">Unit Price</th>
+                <th style="width: 15%;">Total</th>
+                <th style="width: 15%;">Actions</th>
+            </tr>
+            <tr *ngFor="let item of items; let i = index">
+                <td>
+                    <input [(ngModel)]="item.description" placeholder="Description" />
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="item.quantity" (change)="updateItemTotal(i)" min="1" />
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="item.unitPrice" (change)="updateItemTotal(i)" />
+                </td>
+                <td>{{ item.total | currency }}</td>
+                <td>
+                    <button (click)="deleteItem(i)" class="delete-button">Delete</button>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- Add Item Section -->
+        <div class="add-item">
+            <input type="text" [(ngModel)]="newItem.description" placeholder="Item Description" style="width: 38%;" />
+            <input type="number" [(ngModel)]="newItem.quantity" placeholder="Quantity" min="1" style="width: 13.2%;" />
+            <input type="number" [(ngModel)]="newItem.unitPrice" placeholder="Unit Price" style="width: 13.2%;" />
+            <input type="number" [(ngModel)]="newItem.total" placeholder="Total" style="width: 13%;" />
+            <button (click)="addItem()">Add Item</button>
+        </div>
+        
+
+        <!-- Summary Section -->
+        <div class="invoice-summary">
+            <p><strong>Subtotal:</strong> {{ calculateSubtotal() | currency }}</p>
+            <h3><strong>Total:</strong> {{ calculateTotal() | currency }}</h3>
+        </div>
+
+        <!-- Signature Fields -->
+        <div class="signature-section">
+            <div class="signature">
+                <p><strong>Client Signature:</strong></p>
+                <div class="signature-line"></div>
+            </div>
+            <div class="signature">
+                <p><strong>Authorized Signature:</strong></p>
+                <div class="signature-line"></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Invoice Section for PDF generation -->
+
+    <!-- Buttons for Generating and Downloading Invoice -->
+    <div class="button-group">
+        <button (click)="generateInvoice()">Generate Invoice</button>
+        <button *ngIf="invoice" (click)="printInvoice()">Print Invoice</button>
+        <button (click)="saveProgress()">Save</button>
+        <!-- <button (click)="downloadPDF()">Download as PDF</button> New Download PDF button -->
+    </div>
+</div>

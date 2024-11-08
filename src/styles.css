@@ -1,1 +1,176 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 40px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container for the invoice form */
+.invoice-form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    /* max-width: 800px; */
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Company header styling */
+.company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.company-logo h1 {
+    font-size: 24px;
+    color: #4a90e2;
+}
+
+.company-details h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Client info section */
+.client-info, .invoice-info {
+    margin-top: 20px;
+}
+
+.client-info h3, .invoice-info h2 {
+    margin: 0;
+}
+
+/* Items table styling */
+.items-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.items-table th, .items-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.items-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+.items-table td {
+    padding: 0;
+}
+
+/* Full-width input fields inside the table cells */
+.items-table input {
+    width: 90%;
+    padding: 5px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Add item input fields to align with table column widths */
+.add-item input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effects */
+button:hover {
+    background-color: #357ABD;
+    color: #fff;
+}
+
+/* Primary and Secondary button styles */
+button:first-child {
+    background-color: #4a90e2;
+    color: white;
+}
+
+button:nth-child(2) {
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* New Save button */
+button:last-child {
+    background-color: #f39c12;
+    color: white;
+}
+
+/* Styled delete button */
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Hide buttons and interactive elements when printing */
+@media print {
+    button, .delete-button, .add-item, .button-group {
+        display: none !important;
+        
+    }
+
+    /* Ensure the invoice form container takes full width on print */
+    .invoice-form-container {
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    /* Adjust font sizes and layout for printing */
+    body {
+        margin: 0;
+        padding: 0;
+        background: none;
+        box-sizing: border-box;
+    }
+
+    /* Only show essential elements in print */
+    .items-table th, .items-table td {
+        padding: 5px;
+    }
+
+    .company-header {
+        margin-bottom: 10px;
+    }
+
+    .invoice-info, .client-info {
+        margin-top: 10px;
+    }
+  
+}

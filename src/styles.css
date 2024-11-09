@@ -71,7 +71,7 @@ body {
 
 /* Full-width input fields inside the table cells */
 .items-table input {
-    width: 90%; /* Adjusted width to fit within cells */
+    width:90%; /* Adjusted width to fit within cells */
     padding: 5px;
     margin: 0;
     border: 1px solid #ccc;
@@ -163,7 +163,7 @@ button:last-child {
     }
 
     .items-table th, .items-table td {
-        padding: 5px;
+        padding: 2px;
     }
 
     .company-header {

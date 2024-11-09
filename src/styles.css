@@ -4,7 +4,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    margin: 40px;
+    margin: 0;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -14,8 +14,8 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    width: 80%;
-    /* max-width: 800px; */
+    width: 90%; /* Adjusted width for responsiveness */
+    max-width: 800px;
     margin: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -23,6 +23,7 @@ body {
 /* Company header styling */
 .company-header {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ddd;
@@ -68,27 +69,24 @@ body {
     font-weight: bold;
 }
 
-.items-table td {
-    padding: 0;
-}
-
 /* Full-width input fields inside the table cells */
 .items-table input {
-    width: 90%;
+    width: 90%; /* Adjusted width to fit within cells */
     padding: 5px;
     margin: 0;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-/* Add item input fields to align with table column widths */
+/* Add item input fields */
 .add-item input {
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 
 /* Button styling */
 button {
@@ -101,13 +99,11 @@ button {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover effects */
 button:hover {
     background-color: #357ABD;
     color: #fff;
 }
 
-/* Primary and Secondary button styles */
 button:first-child {
     background-color: #4a90e2;
     color: white;
@@ -118,49 +114,54 @@ button:nth-child(2) {
     color: white;
 }
 
-/* New Save button */
 button:last-child {
     background-color: #f39c12;
     color: white;
 }
 
-/* Styled delete button */
 .delete-button {
     background-color: #e74c3c;
     color: white;
-    border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .delete-button:hover {
     background-color: #c0392b;
 }
 
-/* Hide buttons and interactive elements when printing */
+/* Signature Section */
+.signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.signature-line {
+    width: 100%;
+    height: 1px;
+    background: #333;
+    margin-top: 5px;
+}
+
+/* Print Styles */
 @media print {
     button, .delete-button, .add-item, .button-group {
         display: none !important;
-        
     }
 
-    /* Ensure the invoice form container takes full width on print */
     .invoice-form-container {
         max-width: 100%;
         box-shadow: none;
     }
 
-    /* Adjust font sizes and layout for printing */
     body {
         margin: 0;
         padding: 0;
         background: none;
-        box-sizing: border-box;
     }
 
-    /* Only show essential elements in print */
     .items-table th, .items-table td {
         padding: 5px;
     }
@@ -172,5 +173,69 @@ button:last-child {
     .invoice-info, .client-info {
         margin-top: 10px;
     }
-  
+}
+
+/* Small Tablets */
+@media (max-width: 768px) {
+    .company-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .company-details {
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .invoice-form-container {
+        padding: 15px;
+    }
+
+    .signature-section {
+        flex-direction: column;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .invoice-form-container {
+        padding: 10px;
+    }
+
+    .company-logo img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Adjust input and button sizes */
+    .add-item input,
+    .items-table input,
+    button {
+        font-size: 0.9rem;
+    }
+
+    /* Table headers and items stacking */
+    .items-table th,
+    .items-table td {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    /* Responsive layout adjustments */
+    .items-table input {
+        width: 100%;
+    }
+
+    /* Adjust buttons for small screens */
+    button {
+        width: 100%;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
 }

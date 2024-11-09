@@ -229,7 +229,7 @@ button:last-child {
 
     /* Responsive layout adjustments */
     .items-table input {
-        width: 100%;
+        width: 80%;
     }
 
     /* Adjust buttons for small screens */
@@ -238,4 +238,6 @@ button:last-child {
         padding: 8px;
         font-size: 0.9rem;
     }
+
+    
 }

@@ -146,26 +146,53 @@ button:last-child {
 }
 
 /* Print Styles */
+/* Print Styles */
 @media print {
-    button, .delete-button, .add-item, .button-group {
+    /* Hide buttons and actions during printing */
+    button, .delete-button, .add-item, .button-group,  .action {
         display: none !important;
     }
 
+    /* Remove shadows and constraints for print */
     .invoice-form-container {
         max-width: 100%;
         box-shadow: none;
     }
 
+    /* Body margin and padding reset for print */
     body {
         margin: 0;
         padding: 0;
         background: none;
     }
 
-    .items-table th, .items-table td {
-        padding: 2px;
+    /* Ensure all table cells stay within the border */
+    .items-table {
+        border-collapse: collapse;
+        width: 100%; /* Full width for print */
+        margin: 0; /* Remove additional margins */
     }
 
+    .items-table th,
+    .items-table td {
+        padding: 1px;
+        width: auto; /* Auto width for better fit within borders */
+        font-size: 0.9rem; /* Adjust font size for print readability */
+        border: 1px solid #333; /* Solid borders for print clarity */
+        box-sizing: border-box;
+    }
+
+    /* Constrain input fields for print to avoid overflow */
+    .items-table input {
+        width: 90%; /* Ensure inputs stay within table cell borders */
+        padding: 3px; /* Smaller padding for compact fit */
+        border: none;
+        font-size: 0.9rem;
+        background: transparent; /* Remove background for print */
+        box-sizing: border-box;
+    }
+
+    /* Company header adjustments for better print layout */
     .company-header {
         margin-bottom: 10px;
     }
@@ -174,6 +201,7 @@ button:last-child {
         margin-top: 10px;
     }
 }
+
 
 /* Small Tablets */
 @media (max-width: 768px) {

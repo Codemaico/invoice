@@ -146,61 +146,83 @@ button:last-child {
 }
 
 /* Print Styles */
-/* Print Styles */
 @media print {
     /* Hide buttons and actions during printing */
-    button, .delete-button, .add-item, .button-group,  .action {
+    button, .delete-button, .add-item, .button-group, .items-table .action {
         display: none !important;
     }
 
-    /* Remove shadows and constraints for print */
+    /* Invoice container adjustments for print */
     .invoice-form-container {
         max-width: 100%;
         box-shadow: none;
     }
 
-    /* Body margin and padding reset for print */
+    /* Reset body margin and padding for print */
     body {
         margin: 0;
         padding: 0;
         background: none;
     }
 
-    /* Ensure all table cells stay within the border */
+    /* Table styles for printing */
     .items-table {
         border-collapse: collapse;
-        width: 100%; /* Full width for print */
-        margin: 0; /* Remove additional margins */
+        width: 100%; /* Full width to utilize print space */
     }
 
     .items-table th,
     .items-table td {
-        padding: 1px;
-        width: auto; /* Auto width for better fit within borders */
-        font-size: 0.9rem; /* Adjust font size for print readability */
-        border: 1px solid #333; /* Solid borders for print clarity */
+        padding: 4px; /* Slightly smaller padding for more room */
+        font-size: 0.9rem; /* Smaller font size for print clarity */
+        border: 1px solid #333;
+        text-align: left;
+        vertical-align: top;
         box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal; /* Enable multi-line wrapping */
     }
 
-    /* Constrain input fields for print to avoid overflow */
+    /* Input fields adjustments for print */
     .items-table input {
-        width: 90%; /* Ensure inputs stay within table cell borders */
-        padding: 3px; /* Smaller padding for compact fit */
+        max-width: 100%;
+        width: 100%;
+        padding: 3px; /* Reduced padding inside inputs for more content space */
         border: none;
-        font-size: 0.9rem;
-        background: transparent; /* Remove background for print */
+        font-size: 0.85rem;
+        background: transparent;
         box-sizing: border-box;
+        white-space: normal;
+        overflow: visible;
     }
 
-    /* Company header adjustments for better print layout */
-    .company-header {
-        margin-bottom: 10px;
+    /* Adjust column widths to be responsive */
+    .items-table th:nth-child(1),
+    .items-table td:nth-child(1) { /* Description column */
+        width: 35%;
     }
 
-    .invoice-info, .client-info {
-        margin-top: 10px;
+    .items-table th:nth-child(2),
+    .items-table td:nth-child(2), /* Quantity column */
+    .items-table th:nth-child(3),
+    .items-table td:nth-child(3) { /* Unit Price column */
+        width: 18%; /* Increased width for "Unit Price" */
+    }
+
+    .items-table th:nth-child(4),
+    .items-table td:nth-child(4) { /* Total column */
+        width: 15%;
+    }
+
+    .items-table th:nth-child(5),
+    .items-table td:nth-child(5) { /* Actions column, hidden in print */
+        display: none;
     }
 }
+
+
+
 
 
 /* Small Tablets */
